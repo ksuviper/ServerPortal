@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ServerPortal.Models.MediaInfo>
+
+@{
+    ViewBag.Title = "Media";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Size</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (item.isFolder==true) 
+            {
+                @Html.ActionLink( item.FileName,"Media", new { DirPath = item.Path })
+            }                                                                                
+            @if (item.isFolder==false)
+            {
+                @item.FileName
+            }
+        </td>
+        <td id="filesize">
+            @if (item.isFolder==true) 
+            {
+                @:Directory
+            }                                                                                
+            @if (item.isFolder==false)
+            {
+                @item.Size @:bytes
+            }
+        </td>
+    </tr>
+}
+
+</table>

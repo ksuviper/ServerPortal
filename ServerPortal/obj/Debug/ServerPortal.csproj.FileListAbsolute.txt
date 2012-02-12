@@ -1,0 +1,7 @@
+C:\Users\Viper\Documents\Visual Studio 2010\Projects\ServerPortal\ServerPortal\bin\ServerPortal.dll
+C:\Users\Viper\Documents\Visual Studio 2010\Projects\ServerPortal\ServerPortal\bin\ServerPortal.pdb
+C:\Users\Viper\Documents\Visual Studio 2010\Projects\ServerPortal\ServerPortal\bin\EntityFramework.dll
+C:\Users\Viper\Documents\Visual Studio 2010\Projects\ServerPortal\ServerPortal\bin\EntityFramework.xml
+C:\Users\Viper\Documents\Visual Studio 2010\Projects\ServerPortal\ServerPortal\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Viper\Documents\Visual Studio 2010\Projects\ServerPortal\ServerPortal\obj\Debug\ServerPortal.dll
+C:\Users\Viper\Documents\Visual Studio 2010\Projects\ServerPortal\ServerPortal\obj\Debug\ServerPortal.pdb
