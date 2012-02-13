@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServerPortal.Models.DirInfo>
+﻿@model ServerPortal.Models.Dir
 
 @{
     ViewBag.Title = "Directory Info";
@@ -12,28 +12,22 @@
         <th>Name</th>
         <th>Size</th>
     </tr>
-
-@foreach (var item in Model) {
+    
+@foreach (var item in Model.Directories) {
     <tr>
         <td>
-            @if (item.isFolder==true) 
-            {
-                @Html.ActionLink( item.Name,"Dir", new { DirPath = item.Path })
-            }                                                                                
-            @if (item.isFolder==false)
-            {
-                @Html.ActionLink(item.Name, "Files", new { FilePath = item.Path })
-            }
+            @Html.ActionLink(item.Name, "Dir", new { DirPath = item.Path })
+        </td>
+        <td id="filesize">Directory</td>
+    </tr>
+}
+@foreach (var item in Model.Files) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Files", new { FilePath = item.Path })
         </td>
         <td id="filesize">
-            @if (item.isFolder==true) 
-            {
-                @:Directory
-            }                                                                                
-            @if (item.isFolder==false)
-            {
-                @item.Size @:KB
-            }
+            @item.Size.FormatSize()
         </td>
     </tr>
 }
