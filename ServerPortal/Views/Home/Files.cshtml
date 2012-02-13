@@ -1,4 +1,4 @@
-﻿@model ServerPortal.Models.Files
+﻿@model ServerPortal.Models.File
 
 @{
     ViewBag.Title = "Files";
@@ -9,12 +9,12 @@
 
 <fieldset>
     <legend>File Info</legend>
-    <div class="display-label">File Name: @Html.DisplayFor(model => model.fInfo.Name)</div>
-    <div class="display-label">Path: @Html.DisplayFor(model => model.fInfo.Path)</div>
-    <div class="display-label">Date Created: @Html.DisplayFor(model => model.fInfo.DateCreated)</div>
-    <div class="display-label">Date Modified: @Html.DisplayFor(model => model.fInfo.DateMod)</div>
-    <div class="display-label">File Size: @Html.DisplayFor(model => model.fInfo.Size) KB</div>
+    <div class="display-label">File Name: @Html.DisplayFor(model => model.Name)</div>
+    <div class="display-label">Path: @Html.DisplayFor(model => model.Path)</div>
+    <div class="display-label">Date Created: @Html.DisplayFor(model => model.DateCreated)</div>
+    <div class="display-label">Date Modified: @Html.DisplayFor(model => model.DateMod)</div>
+    <div class="display-label">File Size: @Model.Size.FormatSize()</div>
 </fieldset>
 <p>
-    @Html.ActionLink("Back to List", "Dir", new { DirPath = Model.fInfo.Path})
+    @Html.ActionLink("Back to List", "Dir", new { DirPath = Model.Path})
 </p>

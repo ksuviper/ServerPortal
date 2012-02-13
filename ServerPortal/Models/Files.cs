@@ -1,30 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.IO;
 
-namespace ServerPortal.Models
-{
-    public class FiInfo
-    {
-        public String Name { get; set; }
-        public String Path { get; set; }
-        public String Size { get; set; }
-        public String DateMod { get; set; }
-        public String DateCreated { get; set; }
+namespace ServerPortal.Models {
+  public class File {
+    public File() { }
+    public File(string path) : this(new FileInfo(path)) { }
+    public File(FileInfo fileInfo) {
+      Name = fileInfo.Name;
+      Path = fileInfo.FullName;
+      Size = fileInfo.Length;
+      DateMod = fileInfo.LastWriteTime;
+      DateCreated = fileInfo.CreationTime;
     }
-    
-    public class Files
-    {
-        public FiInfo fInfo = new FiInfo();
-        public void getFileInfo(String FilePath)
-        {
-            fInfo.Name = new FileInfo(FilePath).Name;
-            fInfo.Path = new FileInfo(FilePath).DirectoryName;
-            fInfo.Size = (new FileInfo(FilePath).Length / 1024).ToString();
-            fInfo.DateMod = new FileInfo(FilePath).LastWriteTime.ToString();
-            fInfo.DateCreated = new FileInfo(FilePath).CreationTime.ToString();
-        }
-    }
+
+    public string Name { get; set; }
+    public string Path { get; set; }
+    public long Size { get; set; }
+    public DateTime DateMod { get; set; }
+    public DateTime DateCreated { get; set; }
+  }
 }

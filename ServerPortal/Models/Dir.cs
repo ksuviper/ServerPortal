@@ -1,50 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.IO;
 
-namespace ServerPortal.Models
-{
-    public class DirInfo
-    {
-        public String Name { get; set; }
-        public String Path { get; set; }
-        public Boolean isFolder { get; set; }
-        public String Size { get; set; }
+namespace ServerPortal.Models {
+
+  public class Dir {
+    public string Name { get; set; }
+    public string Path { get; set; }
+    public long Size { get; set; }
+
+    public List<Dir> Directories { get; set; }
+    public List<File> Files { get; set; }
+
+    public Dir() {
+      Directories = new List<Dir>();
+      Files = new List<File>();
     }
 
-    public class Dir
-    {
-        public List<DirInfo> _DirList = new List<DirInfo>();
-        public void getDirList(string CurPath)
-        {
-            _DirList.Clear();
+    public Dir(string path, bool initializeChildren = false)
+      : this(new DirectoryInfo(path), initializeChildren) { }
 
-            string[] Dirs = Directory.GetDirectories(CurPath);
-            foreach (string Item in Dirs)
-            {
-                _DirList.Add(new DirInfo
-                {
-                    Name = new DirectoryInfo(Item).Name,
-                    isFolder = true,
-                    Path = Path.GetFullPath(Item),
-                    Size = ""
-                });
-                
-            }
-            string[] Files = Directory.GetFiles(CurPath);
-            foreach (string Item in Files)
-            {
-                _DirList.Add(new DirInfo
-                {
-                    Name = Path.GetFileName(Item),
-                    isFolder = false,
-                    Path = Path.GetFullPath(Item),
-                    Size = (new FileInfo(Item).Length / 1024).ToString()
-                });
-            }
-               
+    public Dir(DirectoryInfo info, bool initializeChildren = false)
+      : this() {
+      Name = info.Name;
+      Path = info.FullName;
+
+      if (initializeChildren) {
+        foreach (var item in info.GetDirectories()) {
+          Directories.Add(new Dir(item, false));
+
         }
+
+        foreach (var item in info.GetFiles()) {
+          Files.Add(new File(item));
+        }
+      }
     }
+  }
 }
