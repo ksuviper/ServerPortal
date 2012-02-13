@@ -1,0 +1,20 @@
+﻿@model ServerPortal.Models.Files
+
+@{
+    ViewBag.Title = "Files";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Files</h2>
+
+<fieldset>
+    <legend>File Info</legend>
+    <div class="display-label">File Name: @Html.DisplayFor(model => model.fInfo.Name)</div>
+    <div class="display-label">Path: @Html.DisplayFor(model => model.fInfo.Path)</div>
+    <div class="display-label">Date Created: @Html.DisplayFor(model => model.fInfo.DateCreated)</div>
+    <div class="display-label">Date Modified: @Html.DisplayFor(model => model.fInfo.DateMod)</div>
+    <div class="display-label">File Size: @Html.DisplayFor(model => model.fInfo.Size) KB</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Dir", new { DirPath = Model.fInfo.Path})
+</p>

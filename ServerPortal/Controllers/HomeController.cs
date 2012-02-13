@@ -20,13 +20,22 @@ namespace ServerPortal.Controllers
         {
             return View();
         }
-        private static Media _DirList = new Media();
-        public ActionResult Media(string DirPath = "c:\\")
+        
+        private static Dir _DirList = new Dir();
+        public ActionResult Dir(string DirPath = "c:\\")
         {
-            ViewBag.Message = "File Listing for: " + DirPath;
+            ViewBag.Message = "Directory Listing for: " + DirPath;
 
             _DirList.getDirList(DirPath);
-            return View(_DirList._MediaList);
+            return View(_DirList._DirList);
+        }
+
+        private static Files _File = new Files();
+        public ActionResult Files(string FilePath)
+        {
+            ViewBag.Message = "File Info";
+            _File.getFileInfo(FilePath);
+            return View(_File);
         }
     }
 }

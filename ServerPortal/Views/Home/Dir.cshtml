@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ServerPortal.Models.MediaInfo>
+﻿@model IEnumerable<ServerPortal.Models.DirInfo>
 
 @{
-    ViewBag.Title = "Media";
+    ViewBag.Title = "Directory Info";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,11 +18,11 @@
         <td>
             @if (item.isFolder==true) 
             {
-                @Html.ActionLink( item.FileName,"Media", new { DirPath = item.Path })
+                @Html.ActionLink( item.Name,"Dir", new { DirPath = item.Path })
             }                                                                                
             @if (item.isFolder==false)
             {
-                @item.FileName
+                @Html.ActionLink(item.Name, "Files", new { FilePath = item.Path })
             }
         </td>
         <td id="filesize">
@@ -32,7 +32,7 @@
             }                                                                                
             @if (item.isFolder==false)
             {
-                @item.Size @:bytes
+                @item.Size @:KB
             }
         </td>
     </tr>

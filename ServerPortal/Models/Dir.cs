@@ -6,27 +6,27 @@ using System.IO;
 
 namespace ServerPortal.Models
 {
-    public class MediaInfo
+    public class DirInfo
     {
-        public String FileName { get; set; }
+        public String Name { get; set; }
         public String Path { get; set; }
         public Boolean isFolder { get; set; }
         public String Size { get; set; }
     }
 
-    public class Media
+    public class Dir
     {
-        public List<MediaInfo> _MediaList = new List<MediaInfo>();
+        public List<DirInfo> _DirList = new List<DirInfo>();
         public void getDirList(string CurPath)
-        {            
-            _MediaList.Clear();
+        {
+            _DirList.Clear();
 
             string[] Dirs = Directory.GetDirectories(CurPath);
             foreach (string Item in Dirs)
             {
-                _MediaList.Add(new MediaInfo
+                _DirList.Add(new DirInfo
                 {
-                    FileName = new DirectoryInfo(Item).Name,
+                    Name = new DirectoryInfo(Item).Name,
                     isFolder = true,
                     Path = Path.GetFullPath(Item),
                     Size = ""
@@ -36,12 +36,12 @@ namespace ServerPortal.Models
             string[] Files = Directory.GetFiles(CurPath);
             foreach (string Item in Files)
             {
-                _MediaList.Add(new MediaInfo
+                _DirList.Add(new DirInfo
                 {
-                    FileName = Path.GetFileName(Item),
+                    Name = Path.GetFileName(Item),
                     isFolder = false,
                     Path = Path.GetFullPath(Item),
-                    Size = new FileInfo(Item).Length.ToString()
+                    Size = (new FileInfo(Item).Length / 1024).ToString()
                 });
             }
                
