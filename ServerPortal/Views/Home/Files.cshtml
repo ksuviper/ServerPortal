@@ -14,6 +14,8 @@
     <div class="display-label">Date Created: @Html.DisplayFor(model => model.DateCreated)</div>
     <div class="display-label">Date Modified: @Html.DisplayFor(model => model.DateMod)</div>
     <div class="display-label">File Size: @Model.Size.FormatSize()</div>
+    <br />
+    <div class="">@Html.ActionLink("Download File", "DLFile", new { DlPath = Model.DlPath })</div>
 </fieldset>
 <p>
     @Html.ActionLink("Back to List", "Dir", new { DirPath = Model.Path})

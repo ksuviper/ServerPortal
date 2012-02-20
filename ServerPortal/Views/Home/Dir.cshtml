@@ -24,7 +24,7 @@
 @foreach (var item in Model.Files) {
     <tr>
         <td>
-            @Html.ActionLink(item.Name, "Files", new { FilePath = item.Path })
+            @Html.ActionLink(item.Name, "Files", new { FilePath = item.Path + "\\" + item.Name })
         </td>
         <td id="filesize">
             @item.Size.FormatSize()
