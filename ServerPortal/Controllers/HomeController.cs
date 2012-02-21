@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Web;
+using System.Web.Mvc;
 using ServerPortal.Models;
+using FileDownloadInMvc3.Models;
 
 namespace ServerPortal.Controllers {
   public class HomeController : Controller {
@@ -31,7 +34,6 @@ namespace ServerPortal.Controllers {
 
     public ActionResult DLFile(string DlPath)
     {
-        
         var DL = new Models.Download
         {
             Filename = DlPath,
@@ -47,12 +49,16 @@ namespace ServerPortal.Controllers {
             DLTrack.SaveChanges();
         }
 
-        var contentDisposition = string.Format("attachment; filename={0}", DlPath);
-        Response.AddHeader("Content-Disposition", contentDisposition);
-        Response.ContentType = "application/force-download";
-        Response.Write(DlPath);
-        
-        return View(DL);
+        try
+        {
+            var fileData = FileDownloadInMvc3.Models.ExtensionMethods.GetFileData(file.Name, file.Path);
+            return new FileDownloadResult(file.Name, fileData);
+        }
+        catch (FileNotFoundException)
+        {
+            throw new HttpException(404, string.Format("The file {0} was not found.", file));
+        }                
+        //return View(DL);
     }
 
     public ActionResult History()

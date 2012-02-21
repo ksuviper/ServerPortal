@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -71,7 +72,9 @@
     <Compile Include="Models\DownloadContext.cs" />
     <Compile Include="Models\Dir.cs" />
     <Compile Include="Models\Download.cs" />
+    <Compile Include="Models\ExtensionMethods.cs" />
     <Compile Include="Models\Extensions.cs" />
+    <Compile Include="Models\FileDownloadResult.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Files.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,6 +14,5 @@ namespace ServerPortal.Models {
       }
       return "0 B";
     }
-
   }
 }
